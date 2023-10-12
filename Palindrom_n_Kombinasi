@@ -1,0 +1,69 @@
+using System;
+namespace LogicalPrograms
+{
+    public class Program
+    {
+        static bool IsPalindrome(int bilangan)
+        {
+            int sisa, jml = 0;
+            int copy = bilangan;
+            while (bilangan > 0)
+            {
+                sisa = bilangan % 10;
+                jml = (jml * 10) + sisa;
+                bilangan = bilangan / 10;
+            }
+
+            return copy == jml;
+        }
+        static long Factorial(int angka)
+        {
+            if (angka == 0)
+                return 1;
+            long res = 1;
+            for (int i = 1; i <= angka; i++)
+            {
+                res *= i;
+            }
+            return res;
+        }
+
+        static long Kombinasi(int n, int k)
+        {
+            if (n < k)
+                return 0;
+
+            long x = Factorial(n);
+            long y = Factorial(k) * Factorial(n - k);
+
+            return x / y;
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Menu");
+            Console.WriteLine("========================");
+            Console.WriteLine("1. Cek bilangan palindrom");
+            Console.WriteLine("2. Menghitung Kombinasi\n");
+            Console.Write("Pilih menu (1/2) : ");
+            int pil = int.Parse(Console.ReadLine());
+            if (pil == 1)
+            {
+                Console.Write("Masukkan bilangan palindrom: ");
+                int number = int.Parse(Console.ReadLine());
+                bool isPalindrome = IsPalindrome(number);
+                Console.WriteLine(isPalindrome);
+            }
+            else
+            {
+                Console.Write("Masukkan nilai n: ");
+                int n = int.Parse(Console.ReadLine());
+                Console.Write("Masukkan nilai k: ");
+                int k = int.Parse(Console.ReadLine());
+                long hasilKombinasi = Kombinasi(n, k);
+                Console.WriteLine(hasilKombinasi);
+            }
+            
+        }
+    }
+}
